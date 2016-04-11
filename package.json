@@ -1,13 +1,17 @@
 {
   "name": "loopback-incremental-id-mixin",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Managed increment id for Loopback",
+  "main": "lib/incremental-id.js",
   "scripts": {
     "test": "nyc --require babel-core/register --require babel-polyfill mocha && nyc report --reporter=lcov",
-    "build": "babel -d ./lib ./src"
+    "build": "babel -d ./lib ./src",
+    "prepublish": "npm run build"
   },
-  "author": "",
+  "author": {
+    "name" : "Loic Mahieu",
+    "email" : "mahieuloic@gmail.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.7.5",
