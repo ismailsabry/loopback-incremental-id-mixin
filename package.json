@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha  --compilers js:babel-core/register",
+    "test": "nyc --require babel-core/register --require babel-polyfill mocha && nyc report --reporter=lcov",
     "build": "babel -d ./lib ./src"
   },
   "author": "",
@@ -17,6 +17,7 @@
     "chai-as-promised": "^5.3.0",
     "loopback": "^3.0.0-alpha.1",
     "mocha": "^2.4.5",
+    "nyc": "^6.4.0",
     "snazzy": "^3.0.1"
   }
 }

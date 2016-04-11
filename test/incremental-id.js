@@ -12,7 +12,7 @@ import IncrementalIdMixin from '../src/incremental-id'
 // Declare mixin
 app.modelBuilder.mixins.define('IncrementalId', IncrementalIdMixin)
 
-const createModel = (options) => {
+const createModel = (options = {}) => {
   // Create memory datasource
   const dataSource = app.createDataSource({
     connector: app.Memory

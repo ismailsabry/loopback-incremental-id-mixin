@@ -22,6 +22,6 @@ module.exports = (Model, options) => {
         ctx.instance[options.idField] = nextId || options.start
       })
       .then(_ => next())
-      .catch(err => next(err))
+      .catch(next)
   })
 }
