@@ -1,10 +1,10 @@
 
 module.exports = (Model, options) => {
   options = {
-    ...options,
     idField: 'id',
     start: 1,
-    increment: (v) => parseInt(v, 10) + 1
+    increment: v => parseInt(v, 10) + 1,
+    ...options
   }
 
   Model.observe('before save', (ctx, next) => {
