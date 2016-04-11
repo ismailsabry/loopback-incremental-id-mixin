@@ -19,5 +19,11 @@
     "mocha": "^2.4.5",
     "nyc": "^6.4.0",
     "snazzy": "^3.0.1"
+  },
+  "nyc": {
+    "lines": 100,
+    "functions": 100,
+    "branches": 100,
+    "check-coverage": true
   }
 }
