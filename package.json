@@ -4,7 +4,9 @@
   "description": "Managed increment id for Loopback",
   "main": "lib/incremental-id.js",
   "scripts": {
-    "test": "nyc --require babel-core/register --require babel-polyfill mocha && nyc report --reporter=lcov",
+    "lint": "snazzy",
+    "test": "snazzy && nyc --require babel-core/register --require babel-polyfill mocha && nyc report --reporter=lcov",
+    "test:debug": "mocha --debug --require babel-core/register --require babel-polyfill",
     "build": "babel -d ./lib ./src",
     "prepublish": "npm run build"
   },
