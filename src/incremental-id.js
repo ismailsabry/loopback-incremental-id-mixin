@@ -1,7 +1,7 @@
 
 module.exports = (Model, options) => {
   options = {
-    idField: 'id',
+    idField: 'iid',
     start: 1,
     increment: v => parseInt(v, 10) + 1,
     ...options

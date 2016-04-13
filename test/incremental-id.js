@@ -31,7 +31,7 @@ const createBook = (options, data) => {
     ...data,
     name: 'vi and Vim'
   })
-    .then(record => record.id)
+    .then(record => record.iid)
 }
 
 describe('Incremental ID', _ => {
@@ -56,7 +56,7 @@ describe('Incremental ID', _ => {
         Book.create({ name: 'foo' })
           .then(_ => Book.create({ name: 'foo' }))
           .then(_ => Book.create({ name: 'foo' }))
-          .then(record => record.id)
+          .then(record => record.iid)
       ).to.eventually.equal(3)
     })
     it('should use `increment` option', () => {
@@ -68,7 +68,7 @@ describe('Incremental ID', _ => {
         Book.create({ name: 'foo' })
           .then(_ => Book.create({ name: 'foo' }))
           .then(_ => Book.create({ name: 'foo' }))
-          .then(record => record.id)
+          .then(record => record.iid)
       ).to.eventually.equal(21)
     })
   })
@@ -82,7 +82,7 @@ describe('Incremental ID', _ => {
             record.name = 'bar'
             return record.save()
           })
-          .then(record => record.id)
+          .then(record => record.iid)
       ).to.eventually.equal(1)
     })
   })
