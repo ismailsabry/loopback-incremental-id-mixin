@@ -7,19 +7,26 @@ module.exports = (Model, options) => {
     ...options
   }
 
+  function findNextId () {
+    return Model.findOne({
+      fields: { [options.idField]: true },
+      order: `${options.idField} DESC`
+    })
+      .then(record => {
+        const nextId = record && record[options.idField]
+        return (nextId && options.increment(nextId)) || options.start
+      })
+  }
+
   Model.observe('before save', (ctx, next) => {
     // Do nothing on already created instance
     if (!ctx.isNewInstance || ctx.instance[options.idField]) {
       return next()
     }
 
-    Model.findOne({
-      fields: { [options.idField]: true },
-      order: `${options.idField} DESC`
-    })
-      .then(record => {
-        const nextId = record && options.increment(record[options.idField])
-        ctx.instance[options.idField] = nextId || options.start
+    findNextId()
+      .then(id => {
+        ctx.instance[options.idField] = id
       })
       .then(_ => next())
       .catch(next)
