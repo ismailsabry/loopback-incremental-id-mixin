@@ -16,7 +16,7 @@ app.modelBuilder.mixins.define('IncrementalId', IncrementalIdMixin)
 const createModel = (options = {}) => {
   const dataSource = createDataSource()
   const Book = dataSource.createModel('Book',
-    { name: String, type: String },
+    { name: String },
     { mixins: { IncrementalId: options } }
   )
 
