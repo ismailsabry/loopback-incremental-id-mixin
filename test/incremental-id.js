@@ -8,16 +8,13 @@ const {expect} = chai
 
 import app from 'loopback'
 import IncrementalIdMixin from '../src/incremental-id'
+import createDataSource from './support/data-source'
 
 // Declare mixin
 app.modelBuilder.mixins.define('IncrementalId', IncrementalIdMixin)
 
 const createModel = (options = {}) => {
-  // Create memory datasource
-  const dataSource = app.createDataSource({
-    connector: app.Memory
-  })
-
+  const dataSource = createDataSource()
   const Book = dataSource.createModel('Book',
     { name: String, type: String },
     { mixins: { IncrementalId: options } }
@@ -27,10 +24,15 @@ const createModel = (options = {}) => {
 }
 
 const createBook = (options, data) => {
-  return createModel(options).create({
-    ...data,
-    name: 'vi and Vim'
-  })
+  const Book = createModel(options)
+
+  return Book.getDataSource().automigrate()
+    .then(_ => (
+      Book.create({
+        ...data,
+        name: 'vi and Vim'
+      })
+    ))
     .then(record => record.iid)
 }
 
@@ -84,7 +86,8 @@ describe('Incremental ID', _ => {
       const Book = createModel()
 
       return expect(
-        Book.create({ name: 'foo' })
+        Book.getDataSource().automigrate()
+          .then(_ => Book.create({ name: 'foo' }))
           .then(_ => Book.create({ name: 'foo' }))
           .then(_ => Book.create({ name: 'foo' }))
           .then(record => record.iid)
@@ -96,7 +99,8 @@ describe('Incremental ID', _ => {
       })
 
       return expect(
-        Book.create({ name: 'foo' })
+        Book.getDataSource().automigrate()
+          .then(_ => Book.create({ name: 'foo' }))
           .then(_ => Book.create({ name: 'foo' }))
           .then(_ => Book.create({ name: 'foo' }))
           .then(record => record.iid)
@@ -108,7 +112,8 @@ describe('Incremental ID', _ => {
       const Book = createModel()
 
       return expect(
-        Book.create({ name: 'foo' })
+        Book.getDataSource().automigrate()
+          .then(_ => Book.create({ name: 'foo' }))
           .then(record => {
             record.name = 'bar'
             return record.save()

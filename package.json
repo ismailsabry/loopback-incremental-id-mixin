@@ -21,6 +21,7 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
     "loopback": "^3.0.0-alpha.1",
+    "loopback-connector-mysql": "^2.2.1",
     "mocha": "^2.4.5",
     "nyc": "^6.4.0",
     "snazzy": "^3.0.1"
