@@ -39,12 +39,24 @@ describe('Incremental ID', _ => {
     it('Should create the column by default', () => {
       const Model = createModel()
       expect(Model.definition.rawProperties).to.have.property('iid')
-      expect(Model.definition.rawProperties.iid).to.deep.equal({ type: 'number' })
+      expect(Model.definition.rawProperties.iid).to.deep.equal({
+        type: 'number',
+        required: true,
+        index: {
+          'unique': true
+        }
+      })
     })
     it('Should create the column with another name', () => {
       const Model = createModel({ idField: 'foo' })
       expect(Model.definition.rawProperties).to.have.property('foo')
-      expect(Model.definition.rawProperties.foo).to.deep.equal({ type: 'number' })
+      expect(Model.definition.rawProperties.foo).to.deep.equal({
+        type: 'number',
+        required: true,
+        index: {
+          'unique': true
+        }
+      })
     })
     it('Should not create the column if disabled', () => {
       const Model = createModel({
