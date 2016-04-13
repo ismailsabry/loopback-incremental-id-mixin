@@ -35,6 +35,25 @@ const createBook = (options, data) => {
 }
 
 describe('Incremental ID', _ => {
+  describe('options.createColumn', _ => {
+    it('Should create the column by default', () => {
+      const Model = createModel()
+      expect(Model.definition.rawProperties).to.have.property('iid')
+      expect(Model.definition.rawProperties.iid).to.deep.equal({ type: 'number' })
+    })
+    it('Should create the column with another name', () => {
+      const Model = createModel({ idField: 'foo' })
+      expect(Model.definition.rawProperties).to.have.property('foo')
+      expect(Model.definition.rawProperties.foo).to.deep.equal({ type: 'number' })
+    })
+    it('Should not create the column if disabled', () => {
+      const Model = createModel({
+        createColumn: false
+      })
+      expect(Model.definition.rawProperties).to.not.have.property('iid')
+    })
+  })
+
   describe('Model.create', _ => {
     it('should begin at 1 if no existing record', () => {
       return expect(createBook()).to.eventually.equal(1)

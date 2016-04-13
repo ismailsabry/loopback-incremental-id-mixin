@@ -2,9 +2,16 @@
 module.exports = (Model, options) => {
   options = {
     idField: 'iid',
+    createColumn: true,
     start: 1,
     increment: v => parseInt(v, 10) + 1,
     ...options
+  }
+
+  if (options.createColumn) {
+    Model.defineProperty(options.idField, {
+      type: 'number'
+    })
   }
 
   function findNextId () {
