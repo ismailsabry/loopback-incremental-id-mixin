@@ -1,0 +1,16 @@
+image: igloo/test-runner
+
+before_script:
+  - source /etc/profile
+
+test-node-4:
+  script:
+    - nvm install 4
+    - npm install
+    - npm test
+
+test-node-5:
+  script:
+    - nvm install 5
+    - npm install
+    - npm test
