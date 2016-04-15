@@ -1,6 +1,6 @@
 {
   "name": "loopback-incremental-id-mixin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Managed increment id for Loopback",
   "main": "index.js",
   "scripts": {
