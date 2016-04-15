@@ -2,7 +2,7 @@
   "name": "loopback-incremental-id-mixin",
   "version": "1.0.0",
   "description": "Managed increment id for Loopback",
-  "main": "lib/incremental-id.js",
+  "main": "index.js",
   "scripts": {
     "lint": "snazzy",
     "test": "snazzy && nyc --require babel-core/register --require babel-polyfill mocha && nyc report --reporter=lcov",
