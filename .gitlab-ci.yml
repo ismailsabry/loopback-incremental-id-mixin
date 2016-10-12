@@ -1,25 +1,17 @@
-image: igloo/test-runner
-
-before_script:
-  - source /etc/profile
+image: mhart/alpine-node:6
 
 .test: &test
   script:
-    - nvm install $NODE_VERSION
-    - npm install
-    - npm test
+    - npm install && npm test
 
 test-node-4:
+  image: mhart/alpine-node:4
   <<: *test
-  variables:
-    NODE_VERSION: "4"
 
 test-node-5:
+  image: mhart/alpine-node:5
   <<: *test
-  variables:
-    NODE_VERSION: "5"
 
 test-node-6:
+  image: mhart/alpine-node:6
   <<: *test
-  variables:
-    NODE_VERSION: "6"
