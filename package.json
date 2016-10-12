@@ -10,9 +10,17 @@
     "build": "babel -d ./lib ./src",
     "prepublish": "npm run build"
   },
+  "homepage": "https://github.com/loicmahieu/loopback-incremental-id-mixin",
+  "bugs": {
+    "url": "https://github.com/loicmahieu/loopback-incremental-id-mixin/issues"
+  },
   "author": {
     "name": "Loic Mahieu",
     "email": "mahieuloic@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loicmahieu/loopback-incremental-id-mixin.git"
   },
   "license": "ISC",
   "devDependencies": {
