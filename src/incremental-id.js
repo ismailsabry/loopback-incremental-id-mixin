@@ -11,7 +11,6 @@ module.exports = (Model, options) => {
   if (options.createColumn) {
     Model.defineProperty(options.idField, {
       type: 'number',
-      required: true,
       index: {
         'unique': true
       }
